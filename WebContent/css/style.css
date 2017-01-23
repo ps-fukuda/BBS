@@ -1,0 +1,101 @@
+div#navi {
+	margin: 10px 0;
+}
+
+div.content {
+    border-radius: 3px;
+    box-shadow: 0 5px 0 rgba(243, 243, 243, 1);
+    background: #fff;
+    border: 1px solid #eee;
+    margin: 20px 0 30px 0;
+    padding: 10px 30px 30px 30px;
+    color: #555;
+    position: relative;
+}
+
+div.content {
+	position: relative;
+}
+
+div.content ul.meta-list {
+	border-bottom: 1px solid #ccc;
+	padding: 5px 0;
+}
+
+ul.comment {
+	list-style-type: none;
+}
+
+li.comment-title {
+	font-weight: 700;
+}
+
+li.comment-body {
+	margin-top: 10px;
+}
+
+li.posted_date {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+
+form#search {
+	margin: 40px 0 30px -60px;
+}
+
+form#search label.category_label {
+	position: relative;
+	top: -30px;
+	left: 67px;
+}
+
+form#search label.from_label {
+	position: relative;
+	top: -30px;
+	left: 10px;
+}
+
+form#search label.to_label {
+	position: relative;
+	top: -30px;
+	left: 10px;
+}
+
+form#search input#from {
+	margin-left: -40px;
+}
+
+form#search input#to {
+	margin-left: -40px;
+}
+
+ul.error {
+	margin: 0;
+	padding: 0;
+}
+
+li.validate {
+	list-style-type: none;
+	padding: 10px 0;
+	color: #FF0000;
+}
+
+p.logout {
+	text-align: right;
+	margin-top: -20px;
+}
+
+div.content pre, div.comment-wrap pre {
+	background: initial;
+	border: initial;
+	padding: 0;
+	white-space: pre;           /* CSS 2.0 */
+	white-space: pre-wrap;      /* CSS 2.1 */
+	white-space: pre-line;      /* CSS 3.0 */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	white-space: -moz-pre-wrap; /* Mozilla */
+	white-space: -hp-pre-wrap;  /* HP Printers */
+	word-wrap: break-word;      /* IE 5+ */
+}
