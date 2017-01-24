@@ -326,18 +326,37 @@ public class UserDao {
 		}
 	}
 
-	public boolean idEditCheck(Connection connection, User user) {
+	public boolean idDuplicateCheck(Connection connection, User user) {
 		PreparedStatement ps = null;
 		try {
-			String sql = "SELECT id FROM users WHERE id = ? AND login_id = ?";
+			String sql = "";
+			sql += "SELECT";
+			sql += "  COUNT(*) as count";
+			sql += " FROM";
+			sql += "  users AS u";
+			sql += " WHERE";
+			sql += "  NOT EXISTS";
+			sql += " (";
+			sql += " SELECT";
+			sql += "  u.login_id";
+			sql += " FROM";
+			sql += "  users";
+			sql += " WHERE";
+			sql += "  users.id = ?";
+			sql += " AND";
+			sql += "  users.login_id = ?";
+			sql += " )";
+			sql += " AND";
+			sql += "  u.login_id = ?";
 			ps = connection.prepareStatement(sql);
-			ps.setString(1, user.getLoginId());
+			ps.setInt(1, user.getId());
 			ps.setString(2, user.getLoginId());
+			ps.setString(3, user.getLoginId());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				return false;
+				if (rs.getInt("count") == 0) return true;
 			}
-			return true;
+			return false;
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {

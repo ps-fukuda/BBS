@@ -222,13 +222,13 @@ public class UserService {
 		}
 	}
 
-	public boolean idEditCheck(User user) {
+	public boolean idDuplicateCheck(User user) {
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
 			UserDao userDao = new UserDao();
-			boolean bool = userDao.idEditCheck(connection, user);
+			boolean bool = userDao.idDuplicateCheck(connection, user);
 
 			commit(connection);
 			return bool;

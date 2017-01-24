@@ -24,7 +24,7 @@
 	<div class="errorMessages">
 		<ul class="error">
 			<c:forEach items="${errorMessages}" var="message">
-				<li class="validate"><c:out value="${message}" /></li>
+				<li class="validate"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <c:out value="${message}" /></li>
 			</c:forEach>
 		</ul>
 	</div>

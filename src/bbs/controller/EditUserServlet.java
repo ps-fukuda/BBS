@@ -69,23 +69,31 @@ public class EditUserServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
 		User user = setInputUser(request);
+		UserService userService = new UserService();
 
 		if (isValid(request, messages)) {
-			// ログインIDに変更が加わった場合のみ、重複チェック
-			new UserService().idEditCheck(user);
-			// 総務人事の人が役職を変更した場合のみチェック
+			// login_idの重複チェックで引っかかった場合
+			if (!userService.idDuplicateCheck(user)) {
+				messages.add("入力されたログインIDは他の方が使用中です");
+				request.setAttribute("errorMessages", messages);
+				request.setAttribute("editUser", user);
+				request.getRequestDispatcher("editUser.jsp").forward(request, response);
+				return;
+			}
 			User loginUser = (User) session.getAttribute("loginUser");
-			if (loginUser.getDepartmentId() == 1 && !request.getParameter("department_id").equals("1")) {
+			// 総務人事が0人になる事を防ぐ判定
+			// 自身が総務人事 & 自身を編集している & 部署idが1以外のものがpostされている
+			if (loginUser.getDepartmentId() == 1 && String.valueOf(loginUser.getId()).equals(request.getParameter("id")) && !request.getParameter("department_id").equals("1")) {
 				// 自分を含め2名以上存在していない場合
-				if (!new UserService().otherGeneralExists()) {
-					messages.add("総務人事担当者を1名以下に設定する事はできません");
+				if (!userService.otherGeneralExists()) {
+					messages.add("総務人事担当者を0名に設定する事はできません");
 					session.setAttribute("errorMessages", messages);
 					response.sendRedirect("./userManagement");
 					return;
 				}
 			}
 
-			new UserService().update(user);
+			userService.update(user);
 			session.removeAttribute("branch");
 			session.removeAttribute("department");
 			session.removeAttribute("userId");
