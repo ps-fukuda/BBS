@@ -23,7 +23,7 @@ public class AuthorityFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		System.out.println("Authority");
+		//System.out.println("Authority");
 		String target = ((HttpServletRequest)request).getRequestURI();
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		User user = (User) session.getAttribute("loginUser");

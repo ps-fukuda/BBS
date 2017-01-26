@@ -48,11 +48,11 @@
 	</div>
 	<div class="form-group">
 		<label for="from" class="from_label">開始日</label>
-		<input name="from" id="from" type="date" class="form-control" placeholder="開始日">
+		<input name="from" id="from" type="date" class="form-control" value="${editFrom}" placeholder="開始日">
 	</div>
 	<div class="form-group">
 		<label for="to" class="to_label">終了日</label>
-		<input name="to" id="to" type="date" class="form-control" placeholder="開始日">
+		<input name="to" id="to" type="date" class="form-control" value="${editTo}" placeholder="開始日">
 	</div>
 		<button type="submit" class="btn btn-default">検索</button>
 </form>

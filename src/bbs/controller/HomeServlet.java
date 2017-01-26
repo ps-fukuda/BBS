@@ -47,9 +47,11 @@ public class HomeServlet extends HttpServlet {
 				request.setAttribute("editCategory", search.getCategory());
 			}
 			if (!StringUtils.isEmpty(search.getFrom())) {
+				request.setAttribute("editFrom", search.getFrom());
 				from = checkDate(request, search.getFrom());
 			}
 			if (!StringUtils.isEmpty(search.getTo())) {
+				request.setAttribute("editTo", search.getTo());
 				to = checkDate(request, search.getTo());
 			}
 

@@ -21,7 +21,7 @@ public class LoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		System.out.println("Login");
+		//System.out.println("Login");
 		String target = ((HttpServletRequest)request).getRequestURI();
 		// ログインしていない && RequestURLが/login || /style.css でない
 		if (!isLogined(request) && !target.equals("/BBS/login.jsp") && !target.equals("/BBS/login") && !target.equals("/BBS/css/style.css")) {

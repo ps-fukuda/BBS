@@ -311,7 +311,7 @@ public class UserDao {
 	public boolean duplicateCheck(Connection connection, User user) {
 		PreparedStatement ps = null;
 		try {
-			String sql = "SELECT EXISTS(SELECT id FROM users WHERE login_id = ?)";
+			String sql = "SELECT id FROM users WHERE login_id = ?";
 			ps = connection.prepareStatement(sql);
 			ps.setString(1, user.getLoginId());
 			ResultSet rs = ps.executeQuery();
